@@ -13,6 +13,8 @@ import static com.codeborne.selenide.Selenide.closeWebDriver;
 
 
 public class BaseTest {
+    String user = System.getProperty("user", PropertyReader.getProperty("user"));
+    String password = System.getProperty("password", PropertyReader.getProperty("password"));
 
     LoginPage loginPage;
     ProjectsPage projectsPage;
@@ -36,7 +38,14 @@ public class BaseTest {
         testCaseModal = new TestCaseModal();
     }
 
+    /* SelenideLogger.addListener("AllureSelenide", new AllureSelenide()
+             .screenshots(false)
+             .savePageSource(true)
+     );
+ }
+*/
     @AfterMethod(alwaysRun = true)
+
     public void tearDown() {
         closeWebDriver();
     }

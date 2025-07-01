@@ -1,62 +1,55 @@
 package tests;
 
-import lombok.extern.log4j.Log4j2;
+
 import org.testng.annotations.Test;
 
-@Log4j2
+
 public class LoginTest extends BaseTest {
 
-    @Test
+    @Test(testName = "Авторизация с валидными данными")
     public void checkLoginWithPositiveCred() {
-        log.info("Login with positive cred");
         loginPage.openPage();
-        loginPage.login("immortalis.mors0@gmail.com", "xPB-5KR-v8L-4WK");
+        loginPage.login(user, password);
         projectsPage.isPageOpened();
     }
 
-    @Test
+    @Test(testName = "Авторизация с пустым логином")
     public void checkLoginWithEmptyLogin() {
-        log.info("Login with empty login");
         loginPage.openPage();
-        loginPage.login("", "xPB-5KR-v8L-4WK");
-        loginPage.errorMessageEmptyData();
+        loginPage.login("", password);
+        loginPage.isErrorMessageEmptyDataVisible();
     }
 
-    @Test
+    @Test(testName = "Авторизация с пустым паролем")
     public void checkLoginWithEmptyPassword() {
-        log.info("Login with empty password");
         loginPage.openPage();
-        loginPage.login("immortalis.mors0@gmail.com", "");
-        loginPage.errorMessageEmptyData();
+        loginPage.login(user, "");
+        loginPage.isErrorMessageEmptyDataVisible();
     }
 
-    @Test
+    @Test(testName = "Авторизация с неправильным логином")
     public void checkLoginWithWrongLogin() {
-        log.info("Login with wrong login");
         loginPage.openPage();
-        loginPage.login("immortalis.mor0@gmail.com", "xPB-5KR-v8L-4WK");
-        loginPage.errorMessageWrongData();
+        loginPage.login("immortalis.mor0@gmail.com", password);
+        loginPage.isErrorMessageWrongDataVisible();
     }
 
-    @Test
+    @Test(testName = "Авторизация с неправильным паролем")
     public void checkLoginWithWrongPassword() {
-        log.info("Login with wrong password");
         loginPage.openPage();
-        loginPage.login("immortalis.mors0@gmail.com", "xPB-5R-v8L-4WK");
-        loginPage.errorMessageWrongData();
+        loginPage.login(user, "xPB-5R-v8L-4WK");
+        loginPage.isErrorMessageWrongDataVisible();
     }
 
-    @Test
+    @Test(testName = "Проверка кнопки Forgot Password")
     public void checkForgotPasswordButton() {
-        log.info("Checking a forgot password button");
         loginPage.openPage();
-        loginPage.forgotPasswordButton();
+        loginPage.isForgotPasswordButtonVisible();
     }
 
-    @Test
+    @Test(testName = "Проверка кнопки Remember Me")
     public void checkRememberMeButton() {
-        log.info("Checking a remember me button");
         loginPage.openPage();
-        loginPage.rememberMeButton();
+        loginPage.isRememberMeButtonClickable();
     }
 }

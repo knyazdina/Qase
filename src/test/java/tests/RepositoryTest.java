@@ -1,33 +1,30 @@
 package tests;
 
-import lombok.extern.log4j.Log4j2;
 import org.testng.annotations.Test;
 
-@Log4j2
 public class RepositoryTest extends BaseTest {
-    @Test
+
+    @Test(testName = "Добавление набора")
     public void checkAddSuite() {
-        log.info("Checking if adding a suite");
+        String name = "QaseTest";
         loginPage.openPage();
         loginPage.login("immortalis.mors0@gmail.com", "xPB-5KR-v8L-4WK");
         repositoryPage.openPage();
-        repositoryPage.addSuite("QaseTest");
-        repositoryPage.isAddSuite();
+        repositoryPage.addSuite(name);
+        repositoryPage.isAddSuite(name);
     }
 
-    @Test
+    @Test(testName = "Удаление пароля")
     public void checkDeleteSuite() {
-        log.info("Checking if deleting a suite");
         loginPage.openPage();
         loginPage.login("immortalis.mors0@gmail.com", "xPB-5KR-v8L-4WK");
         repositoryPage.openPage();
         repositoryPage.deleteSuite();
-        repositoryPage.isAddSuite();
+        repositoryPage.isAddSuite("QaseTest");
     }
 
-    @Test
+    @Test(testName = "Проверка кнопки Create Case")
     public void checkCreateCase() {
-        log.info("Checking if creating a case");
         loginPage.openPage();
         loginPage.login("immortalis.mors0@gmail.com", "xPB-5KR-v8L-4WK");
         repositoryPage.openPage();

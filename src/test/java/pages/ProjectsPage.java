@@ -1,5 +1,6 @@
 package pages;
 
+import io.qameta.allure.Step;
 import lombok.extern.log4j.Log4j2;
 
 import java.time.Duration;
@@ -12,39 +13,64 @@ import static com.codeborne.selenide.Selenide.$x;
 @Log4j2
 public class ProjectsPage {
 
-    private static final String CREATE_NEW_PROJECT_BUTTON = "//span[text()='Create new project']";
-    private static final String PROJECT_NAME = "[id=project-name]";
+    private static final String CREATE_NEW_PROJECT_BUTTON = "//span[text()='Create new project']",
+            CREATE_NEW_PROJECT = "Create new project",
+            PROJECT_NAME = "[id=project-name]",
+            GROUP_ACCESS = "input[value=group]",
+            SELECT_VALUE_ACCESS = "//*[@placeholder='Select value']",
+            OWNER_GROUP_ACCESS = "//*[@placeholder='Type to search']",
+            DONT_ADD_MEMBERS_ACCESS = "[value=none]",
+            PUBLIC_ACCESS = "[value=public]",
+            OPEN_ACTION_MENU = "[aria-label='Open action menu']",
+            REMOVE_BUTTON = "[data-testid=remove]",
+            DELETE_PROJECT = "//span[text()='Delete project']",
+            ANY_PROJECT_YET = "Looks like you don’t have any projects yet.",
+            CREATE_PROJECT_BUTTON = "[type=submit]";
 
-    public void isPageOpened() {
+    @Step("Проверка открыта ли страница Projects Page")
+    public ProjectsPage isPageOpened() {
         log.info("Checking if the project page is open");
-        $(byText("Create new project")).shouldBe(visible, Duration.ofSeconds(75));
+        $(byText(CREATE_NEW_PROJECT)).shouldBe(visible, Duration.ofSeconds(50));
+        return this;
     }
 
-    public void fillProject(String name) {
+    @Step("Создание нового проекта")
+    public ProjectsPage fillProject(String name) {
         log.info("Filling a project with name: {}", name);
         $x(CREATE_NEW_PROJECT_BUTTON).click();
         $(PROJECT_NAME).setValue(name);
+        return this;
     }
 
-    public void access() {
+    @Step("Проверка заполения доступов")
+    public ProjectsPage checkingAccess() {
         log.info("Checking access");
-        $("input[value=group]").click();
-        $x("//*[@placeholder='Select value']").click();
-        $x("//*[@placeholder='Type to search']").click();
-        $("[value=none]").click();
-        $("[value=public]").click();
+        $(GROUP_ACCESS).click();
+        $x(SELECT_VALUE_ACCESS).click();
+        $x(OWNER_GROUP_ACCESS).click();
+        $(DONT_ADD_MEMBERS_ACCESS).click();
+        $(PUBLIC_ACCESS).click();
+        return this;
     }
 
-    public void deleteProject() {
+    @Step("Удаление проекта")
+    public ProjectsPage deleteProject() {
         log.info("Deleting a project");
-        $("[aria-label='Open action menu']").click();
-        $("[data-testid=remove]").click();
-        $x("//span[text()='Delete project']").click();
+        $(OPEN_ACTION_MENU).click();
+        $(REMOVE_BUTTON).click();
+        $x(DELETE_PROJECT).click();
+        return this;
     }
 
+    @Step("Проверка удаления проекта")
     public void isProjectDelete() {
         log.info("Checking deletion of a project");
-        $($(byText("Looks like you don’t have any projects yet."))
-                .shouldBe(visible, Duration.ofSeconds(75)));
+        $(byText(ANY_PROJECT_YET)).shouldBe(visible);
+    }
+
+    @Step("Нажатие на кнопку создания проекта")
+    public RepositoryPage clickCreateProject(){
+        $(CREATE_PROJECT_BUTTON).click();
+        return new RepositoryPage();
     }
 }
