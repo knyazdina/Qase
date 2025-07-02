@@ -4,7 +4,6 @@ import com.google.gson.Gson;
 import io.restassured.http.ContentType;
 import io.restassured.specification.RequestSpecification;
 import models.ProjectRq;
-import org.openqa.selenium.devtools.v135.network.model.Request;
 
 import static io.restassured.RestAssured.given;
 

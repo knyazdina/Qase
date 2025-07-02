@@ -3,8 +3,6 @@ package pages;
 import io.qameta.allure.Step;
 import lombok.extern.log4j.Log4j2;
 
-import java.time.Duration;
-
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.$;
@@ -13,14 +11,14 @@ import static com.codeborne.selenide.Selenide.$;
 public class RepositoryPage {
 
     private static final String OPEN_PROJECT = "a[href='/project/QASE']",
-    PAGE_NAME = "QASE",
-    ADD_SUITE = "[id='create-suite-button']",
-    SUITE_NAME = "[id=title]",
-    CREATE_BUTTON = "[type=submit]",
-    DELETE_SUITE = "[aria-label='Delete suite']",
-    DELETE_BUTTON = "[type='submit']",
-    CREATE_CASE = "[id='create-case-menu-trigger']",
-    CREATE_MANUALLY = "[role=menuitem]";
+            PAGE_NAME = "QASE",
+            ADD_SUITE = "[id='create-suite-button']",
+            SUITE_NAME = "[id=title]",
+            CREATE_BUTTON = "[type=submit]",
+            DELETE_SUITE = "[aria-label='Delete suite']",
+            DELETE_BUTTON = "[type='submit']",
+            CREATE_CASE = "[id='create-case-menu-trigger']",
+            CREATE_MANUALLY = "[role=menuitem]";
 
 
     @Step("Открытие страницы Repository Page")
@@ -45,7 +43,7 @@ public class RepositoryPage {
 
     @Step("Проверка создан ли набор")
     public void isAddSuite(String name) {
-        log.info("Checking if suite is added");
+        log.info("Checking if suite with name: {} is added", name);
         $(byText(name)).shouldBe(visible);
     }
 

@@ -1,11 +1,12 @@
-package tests;
+package utils;
 
 import org.testng.IRetryAnalyzer;
 import org.testng.ITestResult;
 
 public class Retry implements IRetryAnalyzer {
+    private static final int maxTry = 3;
     private int count = 0;
-    private static int maxTry = 3;
+
     @Override
     public boolean retry(ITestResult iTestResult) {
         if (!iTestResult.isSuccess()) {                      //Check if test not succeed

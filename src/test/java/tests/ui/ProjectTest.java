@@ -1,13 +1,13 @@
-package tests;
+package tests.ui;
 
 import org.testng.annotations.Test;
 
 public class ProjectTest extends BaseTest {
 
-    @Test(testName = "Создание проекта")
+    @Test(testName = "Создание проекта", priority = 2)
     public void createProject() {
         loginPage.openPage()
-                .login("immortalis.mors0@gmail.com", "xPB-5KR-v8L-4WK")
+                .login(user, password)
                 .isPageOpened()
                 .fillProject("Qase")
                 .checkingAccess()
@@ -15,10 +15,10 @@ public class ProjectTest extends BaseTest {
                 .isPageOpened();
     }
 
-    @Test(testName = "Удаление проекта")
+    @Test(testName = "Удаление проекта", priority = 1)
     public void deleteProject() {
         loginPage.openPage()
-                .login("immortalis.mors0@gmail.com", "xPB-5KR-v8L-4WK")
+                .login(user, password)
                 .isPageOpened()
                 .deleteProject()
                 .isProjectDelete();

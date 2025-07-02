@@ -69,7 +69,7 @@ public class ProjectsPage {
     }
 
     @Step("Нажатие на кнопку создания проекта")
-    public RepositoryPage clickCreateProject(){
+    public RepositoryPage clickCreateProject() {
         $(CREATE_PROJECT_BUTTON).click();
         return new RepositoryPage();
     }

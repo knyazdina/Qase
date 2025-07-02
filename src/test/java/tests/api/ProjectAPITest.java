@@ -1,9 +1,8 @@
-package tests;
+package tests.api;
 
 import adapters.ProjectAPI;
 import models.ProjectRq;
 import org.testng.annotations.Test;
-
 
 
 public class ProjectAPITest {
@@ -19,11 +18,11 @@ public class ProjectAPITest {
 
     @Test(priority = 1)
     public void createTest() {
-        code= ProjectAPI.createProject(rq);
+        code = ProjectAPI.createProject(rq);
     }
 
-    @Test (priority = 2)
-    public void getTest(){
+    @Test(priority = 2)
+    public void getTest() {
         ProjectAPI.getProject(code);
     }
 

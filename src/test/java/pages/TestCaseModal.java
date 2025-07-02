@@ -14,7 +14,7 @@ import static com.codeborne.selenide.Selenide.$x;
 public class TestCaseModal {
 
     private static final String CREATE_TEST_CASE = "Create test case",
-    TITLE = "//input[@name='title']";
+            TITLE = "//input[@name='title']";
 
     @Step("Проверка открыта ли страница Test Case Modal")
     public void isPageOpened() {

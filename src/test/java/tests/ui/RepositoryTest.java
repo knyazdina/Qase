@@ -1,32 +1,33 @@
-package tests;
+package tests.ui;
 
 import org.testng.annotations.Test;
 
 public class RepositoryTest extends BaseTest {
 
-    @Test(testName = "Добавление набора")
+    String name = "QaseTest";
+
+    @Test(testName = "Добавление набора", priority = 1)
     public void checkAddSuite() {
-        String name = "QaseTest";
         loginPage.openPage();
-        loginPage.login("immortalis.mors0@gmail.com", "xPB-5KR-v8L-4WK");
+        loginPage.login(user, password);
         repositoryPage.openPage();
         repositoryPage.addSuite(name);
         repositoryPage.isAddSuite(name);
     }
 
-    @Test(testName = "Удаление пароля")
+    @Test(testName = "Удаление набора", priority = 2)
     public void checkDeleteSuite() {
         loginPage.openPage();
-        loginPage.login("immortalis.mors0@gmail.com", "xPB-5KR-v8L-4WK");
+        loginPage.login(user, password);
         repositoryPage.openPage();
         repositoryPage.deleteSuite();
-        repositoryPage.isAddSuite("QaseTest");
+        repositoryPage.isAddSuite(name);
     }
 
-    @Test(testName = "Проверка кнопки Create Case")
+    @Test(testName = "Проверка кнопки Create Case", priority = 3)
     public void checkCreateCase() {
         loginPage.openPage();
-        loginPage.login("immortalis.mors0@gmail.com", "xPB-5KR-v8L-4WK");
+        loginPage.login(user, password);
         repositoryPage.openPage();
         repositoryPage.createCase();
         testCaseModal.isPageOpened();
