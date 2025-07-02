@@ -27,7 +27,7 @@ public class BaseTest {
         Configuration.clickViaJs = true;
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--start-maximized");
-        //options.addArguments("--headless");
+        options.addArguments("--headless");
         Configuration.browserCapabilities = options;
 
         loginPage = new LoginPage();
