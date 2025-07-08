@@ -4,7 +4,7 @@ import models.ProjectRq;
 
 import static io.restassured.RestAssured.given;
 
-public class ProjectAPI extends BaseAPI{
+public class ProjectAPI extends BaseAPI {
 
 
     static public String createProject(ProjectRq rq) {

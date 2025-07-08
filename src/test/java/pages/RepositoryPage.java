@@ -9,7 +9,6 @@ import static com.codeborne.selenide.Selenide.$;
 
 @Log4j2
 public class RepositoryPage {
-
     private static final String OPEN_PROJECT = "a[href='/project/QASE']",
             PAGE_NAME = "QASE",
             ADD_SUITE = "[id='create-suite-button']",
@@ -19,7 +18,6 @@ public class RepositoryPage {
             DELETE_BUTTON = "[type='submit']",
             CREATE_CASE = "[id='create-case-menu-trigger']",
             CREATE_MANUALLY = "[role=menuitem]";
-
 
     @Step("Открытие страницы Repository Page")
     public void openPage() {

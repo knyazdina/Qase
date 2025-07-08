@@ -1,13 +1,17 @@
 package tests.api;
 
 import adapters.CaseAPI;
+import adapters.ProjectAPI;
 import models.CaseRq;
+import models.ProjectRq;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 
 public class CaseAPITest {
     String code;
-    String id;
+    int id;
 
     CaseRq rq = CaseRq.builder()
             .title("QaseTest")
@@ -24,14 +28,30 @@ public class CaseAPITest {
             .description("Test creating test case")
             .build();
 
+    @BeforeClass
+    public void createProject() {
+        ProjectRq rq = ProjectRq.builder()
+                .title("QaseTest")
+                .code("QT")
+                .description("test")
+                .access("all")
+                .build();
+
+        code = ProjectAPI.createProject(rq);
+    }
+
     @Test(priority = 1)
     public void createTestCase() {
-        id = CaseAPI.createCase(rq);
-        code = CaseAPI.createCase(rq);
+        id = CaseAPI.createCase(code, rq);
     }
 
     @Test(priority = 2)
     public void deleteTestCase() {
-        CaseAPI.deleteCase(id,code);
+        CaseAPI.deleteCase(id, code);
+    }
+
+    @AfterClass
+    public void deleteProject() {
+        ProjectAPI.deleteProject(code);
     }
 }
