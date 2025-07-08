@@ -3,6 +3,8 @@ package pages;
 import io.qameta.allure.Step;
 import lombok.extern.log4j.Log4j2;
 
+import java.time.Duration;
+
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
@@ -37,13 +39,14 @@ public class LoginPage {
     @Step("Проверка сообщения об ошибке с пустыми данными")
     public void isErrorMessageEmptyDataVisible() {
         log.info("Checking a error message with empty data");
-        $x(ERROR_MESSAGE_EMPTY).shouldHave(exactText(THIS_FILED_IS_REQUIRED)).shouldBe(visible);
+        $x(ERROR_MESSAGE_EMPTY).shouldHave(exactText(THIS_FILED_IS_REQUIRED)).shouldBe(visible, Duration.ofSeconds(20));
     }
 
     @Step("Проверка сообщения об ошибки с неправильными данными")
     public void isErrorMessageWrongDataVisible() {
         log.info("Checking a error message with wrong data");
-        $x(ERROR_MESSAGE_WRONG).shouldHave(exactText((THESE_CREDENTIALS_DO_NOT_MATCH_OUR_RECORDS))).shouldBe(visible);
+        $x(ERROR_MESSAGE_WRONG).shouldHave(exactText((THESE_CREDENTIALS_DO_NOT_MATCH_OUR_RECORDS)))
+                .shouldBe(visible, Duration.ofSeconds(20));
     }
 
     @Step("Проверка кнопки Forgot Passwor")

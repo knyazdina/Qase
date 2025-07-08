@@ -30,7 +30,7 @@ public class ProjectsPage {
     @Step("Проверка открыта ли страница Projects Page")
     public ProjectsPage isPageOpened() {
         log.info("Checking if the project page is open");
-        $(byText(CREATE_NEW_PROJECT)).shouldBe(visible, Duration.ofSeconds(50));
+        $(byText(CREATE_NEW_PROJECT)).shouldBe(visible, Duration.ofSeconds(20));
         return this;
     }
 
@@ -42,7 +42,7 @@ public class ProjectsPage {
         return this;
     }
 
-    @Step("Проверка заполения доступов")
+    @Step("Проверка заполнения доступов")
     public ProjectsPage checkingAccess() {
         log.info("Checking access");
         $(GROUP_ACCESS).click();

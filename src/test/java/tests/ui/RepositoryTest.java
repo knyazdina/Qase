@@ -30,7 +30,7 @@ public class RepositoryTest extends BaseTest {
         loginPage.login(user, password);
         repositoryPage.openPage();
         repositoryPage.createCase();
-        testCaseModal.isPageOpened();
-        testCaseModal.createTestCase("Qase1");
+        testCasePage.isPageOpened();
+        testCasePage.createTestCase("Qase1");
     }
 }
