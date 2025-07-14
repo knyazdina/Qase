@@ -1,20 +1,11 @@
 package adapters;
 
-import com.google.gson.Gson;
-import io.restassured.http.ContentType;
-import io.restassured.specification.RequestSpecification;
 import models.ProjectRq;
 
 import static io.restassured.RestAssured.given;
 
-public class ProjectAPI {
+public class ProjectAPI extends BaseAPI {
 
-    static Gson gson = new Gson();
-
-    static RequestSpecification spec =
-            given()
-                    .contentType(ContentType.JSON)
-                    .header("Token", "92518fa5eebe5acf8ce57a36881f46f6f669b8c6467fdb1b434d9fe9752fa091");
 
     static public String createProject(ProjectRq rq) {
         return

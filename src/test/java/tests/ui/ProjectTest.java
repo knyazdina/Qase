@@ -4,22 +4,20 @@ import org.testng.annotations.Test;
 
 public class ProjectTest extends BaseTest {
 
-    @Test(testName = "Создание проекта", priority = 2)
+    @Test(testName = "Создание проекта", priority = 1)
     public void createProject() {
         loginPage.openPage()
                 .login(user, password)
-                .isPageOpened()
                 .fillProject("Qase")
                 .checkingAccess()
                 .clickCreateProject()
                 .isPageOpened();
     }
 
-    @Test(testName = "Удаление проекта", priority = 1)
+    @Test(testName = "Удаление проекта", priority = 2)
     public void deleteProject() {
         loginPage.openPage()
                 .login(user, password)
-                .isPageOpened()
                 .deleteProject()
                 .isProjectDelete();
     }

@@ -9,7 +9,7 @@ import org.testng.annotations.*;
 import pages.LoginPage;
 import pages.ProjectsPage;
 import pages.RepositoryPage;
-import pages.TestCaseModal;
+import pages.TestCasePage;
 import utils.PropertyReader;
 import utils.TestListener;
 
@@ -23,7 +23,7 @@ public class BaseTest {
     LoginPage loginPage;
     ProjectsPage projectsPage;
     RepositoryPage repositoryPage;
-    TestCaseModal testCaseModal;
+    TestCasePage testCasePage;
 
     @Parameters({"browser"})
     @BeforeMethod
@@ -38,8 +38,10 @@ public class BaseTest {
             //options.addArguments("--headless");
             Configuration.browserCapabilities = options;
         } else if (browser.equalsIgnoreCase("firefox")) {
+            Configuration.browser = "firefox";
             FirefoxOptions options = new FirefoxOptions();
-            //options.addArguments("--headless");
+            Configuration.browserCapabilities = options;
+            options.addArguments("--headless");
             options.addArguments("--start-maximized");
             Configuration.timeout = 10000;
         }
@@ -47,7 +49,7 @@ public class BaseTest {
         loginPage = new LoginPage();
         projectsPage = new ProjectsPage();
         repositoryPage = new RepositoryPage();
-        testCaseModal = new TestCaseModal();
+        testCasePage = new TestCasePage();
 
         SelenideLogger.addListener("AllureSelenide", new AllureSelenide()
                 .screenshots(true)
